@@ -20,7 +20,7 @@ const Products = () => {
   let navigate = useNavigate()
 
   let fetchapi = async () => {
-    let respData = await axios.get('http://localhost:4000/products')
+    let respData = await axios.get('https://zyntra-backend-6.onrender.com/products')
     setProducts(respData.data)
 
 

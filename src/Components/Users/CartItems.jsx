@@ -11,7 +11,7 @@ const CartItems = () => {
   // Fetch cart items
   const fetchCartItems = async () => {
     try {
-      const resp = await axios.get("http://localhost:4000/cartitems");
+      const resp = await axios.get("https://zyntra-backend-6.onrender.com/cartitems");
       setCartItems(resp.data);
     } catch (error) {
       console.log("Error fetching cart items:", error);

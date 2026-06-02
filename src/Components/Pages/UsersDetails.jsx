@@ -6,7 +6,7 @@ const UsersDetails = () => {
     let [userDetails, setUserDetails] = useState([])
 
     let fetchapi = async () => {
-        let respdata = await axios.get(`http://localhost:4000/users`)
+        let respdata = await axios.get(`https://zyntra-backend-6.onrender.com/users`)
         setUserDetails(respdata.data)
 
     }
