@@ -17,7 +17,7 @@ const ViewMore = () => {
     let pathBool = location.pathname.startsWith(`/adminportal/viewmore`)
 
     let fetchApi = async () => {
-        let apidata = await axios.get(`http://localhost:4000/products/${productsid}`)
+        let apidata = await axios.get(`https://zyntra-backend-6.onrender.com/products/${productsid}`)
         setOneProduct(apidata.data)
     }
     useEffect(() => {
@@ -29,7 +29,7 @@ const ViewMore = () => {
     let handleDelete = () => {
         let bool = window.confirm(`do you want to delete this product...?`)
         if (bool) {
-            axios.delete(`http://localhost:4000/products/${id}`)
+            axios.delete(`https://zyntra-backend-6.onrender.com/products/${id}`)
             toast.success(`product is deleted`)
             navigate(`/adminportal/products`)
         }
@@ -42,7 +42,7 @@ const ViewMore = () => {
     let addtoCart = () => {
         let bool = window.confirm(`Do you want to add this product to cart items`)
         if (bool) {
-            axios.post(`http://localhost:4000/cartitems`, oneProduct)
+            axios.post(`https://zyntra-backend-6.onrender.com/cartitems`, oneProduct)
             
             toast.success(`product is added`)
             navigate(`/userportal/cartitems`)
