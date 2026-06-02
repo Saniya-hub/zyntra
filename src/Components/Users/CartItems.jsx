@@ -31,7 +31,7 @@ const CartItems = () => {
 
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:4000/cartitems/${id}`);
+        await axios.delete(`https://zyntra-backend-6.onrender.com/cartitems/${id}`);
         toast.success("Product deleted successfully");
 
         // refresh cart after delete
@@ -58,77 +58,80 @@ const CartItems = () => {
         <h3>Your cart is empty</h3>
       ) : (
         <>
-          <table
-            border="1"
-            cellPadding="10"
-            width="100%"
-            style={{ textAlign: "center" }}
-          >
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Price (INR)</th>
-                <th>Rating</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {cartItems.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <img src={item.image} alt="" width="60" />
-                  </td>
-
-                  <td>{item.title}</td>
-
-                  <td>{item.category}</td>
-
-                  <td>₹{Math.floor(item.price * 95.72)}</td>
-
-                  <td>
-                    {item.rating?.rate} ⭐ ({item.rating?.count})
-                  </td>
-
-                  <td>
-                    <button
-                      onClick={() => handleDelete(item.id)}
-                      style={{
-                        background: "red",
-                        color: "white",
-                        border: "none",
-                        padding: "5px 10px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      DELETE <DeleteIcon />
-                    </button>
-                  </td>
+          <div className="cart-table-container">
+            <table
+              border="1"
+              cellPadding="10"
+              width="100%"
+              style={{ textAlign: "center" }}
+            >
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Price (INR)</th>
+                  <th>Rating</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
 
-          {/* Total Section */}
-          <h3 style={{ marginTop: "20px" }}>
-            Total Price: ₹{Math.floor(totalPrice * 95.72)}
-          </h3>
+              <tbody>
+                {cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td>
+                      <img src={item.image} alt="" width="60" />
+                    </td>
 
-          <button
-            onClick={() => navigate("/userportal/products")}
-            style={{
-              marginTop: "10px",
-              padding: "10px 15px",
-              background: "green",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Proceed to Checkout
-          </button>
+                    <td>{item.title}</td>
+
+                    <td>{item.category}</td>
+
+                    <td>₹{Math.floor(item.price * 95.72)}</td>
+
+                    <td>
+                      {item.rating?.rate} ⭐ ({item.rating?.count})
+                    </td>
+
+                    <td>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        style={{
+                          background: "red",
+                          color: "white",
+                          border: "none",
+                          padding: "5px 10px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        DELETE <DeleteIcon />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="cart-actions">
+            <h3 style={{ marginTop: "20px" }}>
+              Total Price: ₹{Math.floor(totalPrice * 95.72)}
+            </h3>
+
+            <button
+              onClick={() => navigate("/userportal/products")}
+              style={{
+                marginTop: "10px",
+                padding: "10px 15px",
+                background: "green",
+                color: "white",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              Proceed to Checkout
+            </button>
+          </div>
         </>
       )}
     </div>
